@@ -1,5 +1,7 @@
 package az.spring.serviceimpl;
 
+import az.spring.exception.ResourceNotFoundException;
+import az.spring.exception.enums.EnumCode;
 import az.spring.model.Employee;
 import az.spring.repository.EmployeeRepository;
 import az.spring.rest.model.dto.EmployeeDto;
@@ -29,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
          return employeeRepository.findById(id)
                  .map(this::convertToDto)
-                  .orElseThrow(()->new RuntimeException("id not found"));
+                  .orElseThrow(()->new ResourceNotFoundException(EnumCode.EMPLOYEE_NOT_FOUND));
 
     }
 
@@ -54,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void update(EmployeeDto employeeDto, int id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("id not found"));
+                .orElseThrow(()->new ResourceNotFoundException(EnumCode.EMPLOYEE_NOT_FOUND));
         employee.setName(employeeDto.getName());
         employee.setSurname(employeeDto.getSurname());
         employee.setSalary(employeeDto.getSalary());
@@ -64,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateSome(EmployeeDto employeeDto, int id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("id not found"));
+                .orElseThrow(()->new ResourceNotFoundException(EnumCode.EMPLOYEE_NOT_FOUND));
         if(employeeDto.getName()!=null)
         employee.setName(employeeDto.getName());
 
@@ -80,7 +82,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void delete(int id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("id not found"));
+                .orElseThrow(()->new ResourceNotFoundException(EnumCode.EMPLOYEE_NOT_FOUND));
         employeeRepository.deleteById(id);
     }
 

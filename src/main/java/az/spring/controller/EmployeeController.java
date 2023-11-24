@@ -3,8 +3,11 @@ package az.spring.controller;
 import az.spring.rest.model.dto.EmployeeDto;
 import az.spring.rest.model.response.EmployeeResponse;
 import az.spring.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,7 +33,7 @@ public class EmployeeController {
     }
     @PostMapping("/employee")
     @ResponseStatus(HttpStatus.CREATED)
-    public void insert(@RequestBody EmployeeDto employeeDto){
+    public void insert(@Valid @RequestBody EmployeeDto employeeDto){
         employeeService.insert(employeeDto);
     }
     @PutMapping("/employee/{id}")
