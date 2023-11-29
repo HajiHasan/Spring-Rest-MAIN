@@ -7,8 +7,8 @@ public enum EnumCode {
     EMPLOYEE_NOT_FOUND(100, "employee not found with given id"),
     VALIDATION_ERROR(200, "id type must be only numbers"),
     WRONG_TYPE_INSERT(300,"columns cannot be blank"),
-    UNKNOWN_ERROR(404,"Unknown error has appeared");
-
+    UNKNOWN_ERROR(404,"Unknown error has appeared"),
+    ACCESS_ERROR(666, "You dont have access this method");
     private final String message;
 
     private final int id;

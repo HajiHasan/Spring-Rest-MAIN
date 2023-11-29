@@ -3,7 +3,7 @@ package az.spring.controller;
 import az.spring.exception.ResourceNotFoundException;
 import az.spring.exception.enums.EnumCode;
 import az.spring.rest.model.response.ErrorResponse;
-import jakarta.servlet.annotation.ServletSecurity;
+import org.springframework.expression.AccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import java.lang.invoke.WrongMethodTypeException;
+import javax.management.relation.RoleInfoNotFoundException;
 
 @RestControllerAdvice
 public class ExceptionHandlerController {

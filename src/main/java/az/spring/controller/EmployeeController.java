@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +18,15 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
+
+
     @GetMapping("/allemployees")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public EmployeeResponse getAllEmployees(){
        return employeeService.getAllEmployees();
     }
     @GetMapping("/employee/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public EmployeeDto getEmployeeById(@PathVariable int id){
         return employeeService.getEmployeeById(id);
     }
